@@ -1,0 +1,45 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mywebsite</title>
+    {% bootstrap_css%}
+    {% block styles %}
+    {% load static %}
+    <link rel="stylesheet"  type="text/css" href="{% static 'style.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">csintern</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'cstask:home' %}">Home</a></li>
+          <li><a href="{% url 'cstask:topiclist' %}">Topic List </a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li><a href="#">Hello,{{user.username}}</a></li>
+          <li><a href="{% url 'users:logout' %}"><span class="glyphicon glyphicon-user"></span> Logout </a></li>
+          {% else %}
+          <li><a href="{% url 'users:register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="{% url 'users:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h2>Welcome to my website</h2>
+    <h3>New user please <a href="{% url 'users:register' %}">register</a> to create new topics</h3>
+
+  </div>
+  {% endblock %}
+</div>
+  </body>
+</html>

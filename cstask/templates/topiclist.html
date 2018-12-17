@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block styles %}
+
+{% endblock %}
+{%block content%}
+<div class="container">
+  {% if  topicss %}
+
+  <h1>Topics list</h1>
+  <h4><a href="{% url 'cstask:newtopic'%}"> Newtopic</a></h4>
+
+  {% for topic in topicss %}
+   <li> <a href="{% url 'cstask:entrylist' topic.id%}">{{ topic }}</a></li>
+    {{topic.created_at}}
+    <a href="{% url 'cstask:deletetopic' topic.id%}">Delete</a>
+
+
+  {% endfor %}
+  {% else %}
+  <h1>No Topics created yet - plz create new topic</h1>
+  <h4><a href="{% url 'cstask:newtopic'%}"> Newtopic</a></h4>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+{% load bootstrap3 %}
+{% block styles %}
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <form class="form" action="{%url 'cstask:newentry' topicss.id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" name="submit" class="btn btn-primary"> Create Entry</button>
+    {% endbuttons %}
+  </form>
+</div>
+
+
+{% endblock%}

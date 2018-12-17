@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% block styles %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+  <h1>{{topicss}}</h1>
+  <h4><a href="{% url 'cstask:newentry' topicss.id %}"> NewEntry </a></h4>
+{% if entrys %}
+{% for entry in entrys %}
+<li>{{entry.text}}</li>
+<a href="{% url  'cstask:deleteentry' entry.id %}">Delete</a>
+{% endfor %}
+  {% else %}
+  <h2>No entries found </h2>
+  {% endif %}
+</div>
+
+
+{% endblock %}
